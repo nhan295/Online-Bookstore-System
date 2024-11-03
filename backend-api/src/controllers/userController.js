@@ -42,7 +42,7 @@ const signup = async (req, res) => {
         await userModel.signup(username, hashedPassword, email, date);
         
         req.session.user = await userModel.getUserData(username)
-        req.session.ND_HoTen = username
+        req.session.user_name = username
         res.status(200).json({ message: req.session.user });
     }
     catch (error) {
@@ -69,7 +69,7 @@ const signin = async (req, res) => {
             return res.status(401).json({ message: 'Wrong password' });
         } else {
             req.session.user = await userModel.getUserData(username)
-            req.session.ND_HoTen = username
+            req.session.user_name = username
             res.status(200).json({ message: req.session.user });
         }
     }

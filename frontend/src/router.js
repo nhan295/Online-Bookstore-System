@@ -3,14 +3,14 @@ import { createRouter, createWebHistory } from 'vue-router';
 import index from './view/index.vue';
 import UserPage from './view/UserPage.vue';
 import HomePage from './view/HomePage.vue';
-import CartPage from './view/CartPage.vue';
+// import CartPage from './view/CartPage.vue';
 
 
 const routes = [
                 { path: '/index', component: index},
                 { path: '/HomePage', component: HomePage},
                 { path: '/UserPage', component: UserPage},
-                { path: '/CartPage', component: CartPage}
+                // { path: '/CartPage', component: CartPage}
 ];
 
 

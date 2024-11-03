@@ -5,37 +5,37 @@ const db = require('../config/db');
 const userModel = {
 
     getUserData: (username) => {
-        return db('NGUOI_DUNG').select('*').where({ ND_HoTen: username }).first();
+        return db('USERS').select('*').where({ user_name: username }).first();
     },
 
     getUsername: (username) => {
-        return db('NGUOI_DUNG').where({ ND_HoTen: username }).first();
+        return db('USERS').where({ user_name: username }).first();
     },
 
     getEmail: (email) => {
-        return db('NGUOI_DUNG').where({ ND_Email: email }).first();
+        return db('USERS').where({ user_email: email }).first();
     },
 
     getPassword: (username) => {
-        return db('NGUOI_DUNG')
-            .select('ND_MatKhau')
-            .where({ ND_HoTen: username })
+        return db('USERS')
+            .select('user_password')
+            .where({ user_name: username })
             .first()
-            .then(result => result.ND_MatKhau);
+            .then(result => result.user_password);
     },
     
     signup: (username, password, email, date) => {
-        return db('NGUOI_DUNG').insert({
-            ND_HoTen: username,
-            ND_MatKhau: password,
-            ND_Email: email,
-            ND_NgayTao: date
+        return db('USERS').insert({
+            user_name: username,
+            user_password: password,
+            user_email: email,
+            date_created: date
         })
     },
 
     signin: (username, password) => {
-        return db('NGUOI_DUNG')
-       .where({ ND_HoTen: username })
+        return db('USERS')
+       .where({ user_name: username })
     }
 }
 
