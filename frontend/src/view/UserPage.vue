@@ -13,7 +13,6 @@
 
 <script>
 import UserPage_Header from '@/components/UserPage_Header.vue';
-// import ListBook from '@/components/ListBook.vue';
     export default {
         components: {
             UserPage_Header

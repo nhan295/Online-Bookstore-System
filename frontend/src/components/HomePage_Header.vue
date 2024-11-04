@@ -2,40 +2,52 @@
     <div class="main">
         <div class="header">
             <div class="header-nav">
-                <ul class="nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#category">Category</a>
+                <div>
+                    <ul class="nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#category">Category</a>
+                            
+                                <ul class="sub_product">
+                                    <li><a href="#">New arrive</a></li>
+                                    <li><a href="#">Romantic</a></li>
+                                    <li><a href="#">Adventure</a></li>
+                                    <li><a href="#">Economic</a></li>
+                                </ul>
+                            
+                        </li>
+                        <li><a href="#cart">Cart</a></li>
+                        <li><a href="#contact">About Us</a></li>
                         
-                            <ul class="sub_product">
-                                <li><a href="#">New arrive</a></li>
-                                <li><a href="#">Romantic</a></li>
-                                <li><a href="#">Adventure</a></li>
-                                <li><a href="#">Economic</a></li>
-                            </ul>
-                        
-                    </li>
-                    <li><a href="#cart">Cart</a></li>
-                    <li><a href="#contact">About Us</a></li>
-                    
-                </ul>
+                    </ul>
+                </div>
+
+                <div class="topNav-search">
+                    <div>
+                        <form action="search">
+                        <i class="topNav-icon-search fa-solid fa-magnifying-glass"></i>
+                        </form>
+                    </div>
+
+                    <div>
+                        <input type="text" class="topNav-searchbar" placeholder="Find your book" />
+                    </div>
+                </div>
                 
                 <div class="user" >
                     <div onclick="document.getElementById('js_signup').style.display='none'">
                         <a onclick="document.getElementById('js_login').style.display='flex'" class="js-login js-closesignup">
-                            LogIn
+                            <router-link to="../index">Login</router-link>
+
+                            
                         </a>
                     </div>
+
                     <div onclick="document.getElementById('js_login').style.display='none'">
                         <a onclick="document.getElementById('js_signup').style.display='flex'" class="js-signup js-closelogin">
-                            SignUp
+                            <router-link to="../index">Signup</router-link>
                         </a>
 
                     </div>
-                    <!-- Account part -->
-                    <!-- <ul class="subuser">
-                        <li><a class="js-signup">Sign Up</a></li>
-                        <li><a href="#user">Log Out</a></li>
-                    </ul> -->
                 </div>
                 
             </div>
@@ -73,7 +85,9 @@ html {
     top: 0;
     left: 0;
     right: 0;
-    /* làm cho thẻ chứa nó nổi lên hoặc chìm xuống */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     z-index: 1;
 }
 
@@ -110,7 +124,6 @@ html {
     float: right;
     padding-right: 20px;
     display: flex;
-    position: absolute;
     top: 0;
     right: 0;
 
@@ -199,6 +212,38 @@ html {
     /* text-align: justify; căn đều 2 bên */
     text-align: justify;
     line-height: 1.4;
+}
+/* Search Bar */
+.topNav-search {
+  background-color: #edeff4;
+  height: 40px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  width: 30%;
+}
+
+.topNav-search input {
+  margin-right: 100%;
+}
+
+.topNav-icon-search {
+  font-size: 18px;
+  opacity: 0.52;
+  font-weight: 700;
+  display: flex;
+  padding-left: 8px;
+}
+
+.topNav-searchbar {
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  font-size: 1.1rem;
+  background-color: #edeff4;
 }
 
 </style>

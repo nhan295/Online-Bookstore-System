@@ -2,23 +2,37 @@
    <div class="main">
         <div class="header">
             <div class="header-nav">
-                <ul class="nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#category">Category</a>
+                <div>
+
+                    <ul class="nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#category">Category</a>
+                            
+                                <ul class="sub_product">
+                                    <li><a href="#">New arrive</a></li>
+                                    <li><a href="#">Romantic</a></li>
+                                    <li><a href="#">Adventure</a></li>
+                                    <li><a href="#">Economic</a></li>
+                                </ul>
+                            
+                        </li>
+                        <li><a href="#cart">Cart</a></li>
+                        <li><a href="#contact">About Us</a></li>
                         
-                            <ul class="sub_product">
-                                <li><a href="#">New arrive</a></li>
-                                <li><a href="#">Romantic</a></li>
-                                <li><a href="#">Adventure</a></li>
-                                <li><a href="#">Economic</a></li>
-                            </ul>
-                        
-                    </li>
-                    <li><a href="#cart">Cart</a></li>
-                    <li><a href="#contact">About Us</a></li>
-                    
-                </ul>
+                    </ul>
+                </div>
                 
+                <div class="topNav-search">
+                    <div>
+                        <form action="search">
+                        <i class="topNav-icon-search fa-solid fa-magnifying-glass"></i>
+                        </form>
+                    </div>
+
+                    <div>
+                        <input type="text" class="topNav-searchbar" placeholder="Find your book" />
+                    </div>
+                </div>
 
                 <li  class="user" style="cursor: pointer;">
                     <a>
@@ -97,7 +111,9 @@ html {
     top: 0;
     left: 0;
     right: 0;
-    /* làm cho thẻ chứa nó nổi lên hoặc chìm xuống */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     z-index: 1;
 }
 
@@ -252,6 +268,39 @@ html {
     line-height: 38px;
     list-style-type: none;
     cursor: pointer;
+}
+/* Search Bar */
+.topNav-search {
+  background-color: #edeff4;
+  height: 40px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  width: 30%;
+  margin: auto;
+}
+
+.topNav-search input {
+  margin-right: 100%;
+}
+
+.topNav-icon-search {
+  font-size: 18px;
+  opacity: 0.52;
+  font-weight: 700;
+  display: flex;
+  padding-left: 8px;
+}
+
+.topNav-searchbar {
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  font-size: 1.1rem;
+  background-color: #edeff4;
 }
 
 </style>

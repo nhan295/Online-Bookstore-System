@@ -1,17 +1,9 @@
-c// src/models/bookModel.js
 const db = require('../config/db');
 
 const bookModel = {
-  getBooksByCategory: (category, callback) => {
-    const query = `SELECT * FROM books WHERE Sach_Ten = ?`;
-    db.query(query, [category], (err, results) => {
-      if (err) {
-        return callback(err);
-      }
-      callback(null, results);
-    });
+  getBooksByCategory: (category) => {
+    return db('book').select('book.book_title','book.book_image','book.book_price','book.book_discount').innerJoin('book_types', 'book.type_id', 'book_types.type_id').where('book_types.type_name', `${category}`)
   },
 };
-
 module.exports = bookModel;
 

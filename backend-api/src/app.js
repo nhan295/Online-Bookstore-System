@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const userRoute = require('./routes/userRoute');
+const bookRoute = require('./routes/bookRoute');
 
 const app = express();
 
@@ -31,4 +32,6 @@ app.use(session({
 }))
 
 userRoute.setup(app)
+bookRoute.setup(app)
+
 module.exports = app

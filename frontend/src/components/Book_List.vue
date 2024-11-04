@@ -1,52 +1,70 @@
 <template>
-    <div class="book-list">
-      <h2>{{ category.toUpperCase() }}</h2>
-      <div class="books">
-        <BookItem v-for="book in books" :key="book.id" :book="book" />
+  <div>
+    <h2>{{ category }}</h2>
+    <div v-if="loading">Loading...</div>
+    <div v-else-if="error">{{ error }}</div>
+    <div v-else>
+      <div v-for="(book, index) in books" :key="index" class="list-item">
+        <span>{{ book.book_image }}</span>
+        <img :src="book.book_image" alt="Book Cover" class="book-cover" />
+        <span>{{ book.book_title }}</span>
+        <span>{{ book.book_price }}</span>
+        <span>{{ book.book_discount }}</span>
       </div>
     </div>
-  </template>
-  
-  <script>
-  import BookItem from './Book_Item.vue';
-  
-  export default {
-    components: {
-      BookItem,
-    },
-    props: {
-      category: String,
-    },
-    data() {
-      return {
-        books: [],
-      };
-    },
-    methods: {
-      fetchBooks() {
-        fetch(`http://localhost:3000/api/books/${this.category}`)
-          .then(response => response.json())
-          .then(data => {
-            this.books = data;
-          })
-          .catch(error => console.error('Error fetching books:', error));
-      },
-    },
-    mounted() {
-      this.fetchBooks();
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .book-list {
-    margin: 20px 0;
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted, watch } from 'vue';
+
+// Nhận `category` từ props
+const props = defineProps({
+  category: String,
+});
+
+// Tạo các biến reactive cho dữ liệu và trạng thái
+const books = ref([]);
+const loading = ref(true);
+const error = ref(null);
+
+// Hàm gọi API để lấy sách theo thể loại
+const fetchBooks = async () => {
+  loading.value = true;
+  error.value = null;
+
+  try {
+    const response = await fetch(`http://localhost:3000/api/v1/book/${props.category}`);
+    if (!response.ok) {
+      throw new Error('Failed to load books');
+    }
+    const data = await response.json();
+    books.value = data.message; // Lấy dữ liệu từ response
+  } catch (err) {
+    error.value = err.message;
+  } finally {
+    loading.value = false;
   }
-  
-  .books {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  </style>
-  
+};
+
+// Gọi hàm khi component được mount
+onMounted(fetchBooks);
+
+// Theo dõi sự thay đổi của `category` để cập nhật dữ liệu
+watch(() => props.category, fetchBooks);
+</script>
+
+<style scoped>
+.list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.book-cover {
+  width: 150px;
+  height: auto;
+  margin-bottom: 10px;
+}
+</style>

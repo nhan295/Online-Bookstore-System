@@ -1,8 +1,14 @@
-// src/routes/bookRoute.js
-const express = require('express');
-const router = express.Router();
-const bookController = require('../controllers/bookController');
 
-router.get('/books/:category', bookController.getBooksByCategory);
+const express = require('express')
+const bookController = require('../controllers/bookController')
 
-module.exports = router;
+const router = express.Router()
+
+module.exports.setup = (app) => {
+    
+    app.use('/api/v1/book', router)
+
+    // Get user data api routes
+    router.get('/:category', bookController.getBooksByCategory);
+
+}
