@@ -11,4 +11,6 @@ module.exports.setup = (app) => {
     // Get user data api routes
     router.get('/:category', bookController.getBooksByCategory);
 
+    // router.get('/search', bookController.searchBooksByName);
+
 }

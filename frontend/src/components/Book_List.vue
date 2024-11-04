@@ -5,7 +5,6 @@
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
       <div v-for="(book, index) in books" :key="index" class="list-item">
-        <span>{{ book.book_image }}</span>
         <img :src="book.book_image" alt="Book Cover" class="book-cover" />
         <span>{{ book.book_title }}</span>
         <span>{{ book.book_price }}</span>
