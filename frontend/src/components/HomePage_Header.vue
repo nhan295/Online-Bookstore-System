@@ -31,7 +31,18 @@
                         <input type="text" class="topNav-searchbar" placeholder="Find your book" />
                     </div>
                 </div>
-                
+                <!-- SHOW SEARCH RESULT
+                <div v-if="books.length" class="search-results">
+                    <div v-for="book in books" :key="book.book_id" class="book-item">
+                        <img :src="book.book_image" alt="Book Cover" class="book-cover" />
+                        <div>
+                            <h4>{{ book.book_title }}</h4>
+                            <p>Price: {{ book.book_price }}</p>
+                            <p>Discount: {{ book.book_discount }}</p>
+                        </div>
+                    </div>
+                </div> -->
+
                 <div class="user" >
                     <div onclick="document.getElementById('js_signup').style.display='none'">
                         <a onclick="document.getElementById('js_login').style.display='flex'" class="js-login js-closesignup">
@@ -54,6 +65,23 @@
     </div>
 
 </template>  
+
+<!-- <script setup>
+import { ref } from 'vue';
+
+const searchQuery = ref('');
+const books = ref([]);
+
+const searchBooks = async () => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/v1/book/search?name=${searchQuery.value}`);
+    const data = await response.json();
+    books.value = data.books;
+  } catch (error) {
+    console.error('Error searching for books:', error);
+  }
+};
+</script> -->
 
 
 <style scoped>

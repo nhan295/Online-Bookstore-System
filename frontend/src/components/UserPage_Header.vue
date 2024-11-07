@@ -9,9 +9,9 @@
                         <li><a href="#category">Category</a>
                             
                                 <ul class="sub_product">
-                                    <li><a href="#">Romantic</a></li>
-                                    <li><a href="#">Adventure</a></li>
-                                    <li><a href="#">Economic</a></li>
+                                    <li><a href="roman">Romantic</a></li>
+                                    <li><a href="adventure">Adventure</a></li>
+                                    <li><a href="economic">Economic</a></li>
                                 </ul>
                             
                         </li>
