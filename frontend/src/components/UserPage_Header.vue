@@ -35,8 +35,7 @@
 
                 <li  class="user" style="cursor: pointer;">
                     <a>
-                        <img class="user-img" src="#" alt="user_img">
-                            
+                        <img :src="userAvatar" alt="" class="user-img" />
                     </a>
                         
                     <ul class="subuser">
@@ -51,35 +50,45 @@
 
 </template>  
 
-<script>
-    export default {
-data() {
-  return {
-    
-  };
-},
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
-mounted() {
-  },
+const userAvatar = ref("");
+const router = useRouter();
 
-methods: {
-
-    async logout() {
-      const response = await fetch("http://localhost:3000/api/v1/users/logout", {
-        method: 'POST',
-        header: {
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include'
-      })
-      if (response.ok){
-        this.$router.push('/HomePage')
-      }
-    },
-
-},
-
+const getUserData = async () => {
+  try {
+    const response = await fetch("http://localhost:3000/api/v1/users/", {
+      method: 'GET',
+      credentials: 'include',
+    });
+    const data = await response.json();
+    if (response.ok) {
+      userAvatar.value = data.user.user_avatar;
+    }
+  } catch (error) {
+    console.error('Failed to fetch user data', error);
+  }
 };
+
+const logout = async () => {
+  const response = await fetch("http://localhost:3000/api/v1/users/logout", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+  if (response.ok) {
+    router.push('/HomePage');
+  }
+};
+
+// Call getUserData when component is mounted
+onMounted(() => {
+  getUserData();
+});
 </script>
 
 <style scoped>
@@ -174,14 +183,15 @@ html {
 
 .user img{
     float: inline-start;
-    margin-top: 8%;
+    margin-top: 13px;
     margin-right: 8px;
 }
 .user-img {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     border: 1px solid #fff;
+
 }
 
 .sub_product {
@@ -241,7 +251,7 @@ html {
     text-align: justify;
     line-height: 1.4;
 }
-/* ------------------------------------------------------------------------- */
+
 .subuser li a {
     color: #000;
     line-height: 38px;
