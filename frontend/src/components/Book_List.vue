@@ -72,7 +72,7 @@ const searchBooks = async (searchText) => {
     console.error('Error fetching books:', error);
   }
 };
-
+//lắng nghe sự kiện phát ra từ HomPage_Header
 on('search-query-updated', (searchQuery) => {
   if (searchQuery) {
     searchBooks(searchQuery);

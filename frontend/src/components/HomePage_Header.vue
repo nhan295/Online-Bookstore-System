@@ -49,7 +49,7 @@
   
   <script setup>
   import { ref } from 'vue';
-import { useEmitter } from '../emits'; // Sử dụng đường dẫn tương đối
+import { useEmitter } from '../emits'; 
 
 const searchQuery = ref('');
 const { emit } = useEmitter();
