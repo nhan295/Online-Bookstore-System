@@ -1,88 +1,64 @@
 <template>
     <div class="main">
-        <div class="header">
-            <div class="header-nav">
-                <div>
-                    <ul class="nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#category">Category</a>
-                            
-                                <ul class="sub_product">
-                                    <li><a href="#">Romantic</a></li>
-                                    <li><a href="#">Adventure</a></li>
-                                    <li><a href="#">Economic</a></li>
-                                </ul>
-                            
-                        </li>
-                        <li><a href="#cart">Cart</a></li>
-                        <li><a href="#contact">About Us</a></li>
-                        
-                    </ul>
-                </div>
-
-                <div class="topNav-search">
-                    <div>
-                        <form action="search">
-                        <i class="topNav-icon-search fa-solid fa-magnifying-glass"></i>
-                        </form>
-                    </div>
-
-                    <div>
-                        <input type="text" class="topNav-searchbar" placeholder="Find your book" />
-                    </div>
-                </div>
-                <!-- SHOW SEARCH RESULT
-                <div v-if="books.length" class="search-results">
-                    <div v-for="book in books" :key="book.book_id" class="book-item">
-                        <img :src="book.book_image" alt="Book Cover" class="book-cover" />
-                        <div>
-                            <h4>{{ book.book_title }}</h4>
-                            <p>Price: {{ book.book_price }}</p>
-                            <p>Discount: {{ book.book_discount }}</p>
-                        </div>
-                    </div>
-                </div> -->
-
-                <div class="user" >
-                    <div onclick="document.getElementById('js_signup').style.display='none'">
-                        <a onclick="document.getElementById('js_login').style.display='flex'" class="js-login js-closesignup">
-                            <router-link to="../index">Login</router-link>
-
-                            
-                        </a>
-                    </div>
-
-                    <div onclick="document.getElementById('js_login').style.display='none'">
-                        <a onclick="document.getElementById('js_signup').style.display='flex'" class="js-signup js-closelogin">
-                            <router-link to="../index">Signup</router-link>
-                        </a>
-
-                    </div>
-                </div>
-                
+      <div class="header">
+        <div class="header-nav">
+          <div>
+            <ul class="nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="#category">Category</a>
+                <ul class="sub_product">
+                  <li><a href="#">Romantic</a></li>
+                  <li><a href="#">Adventure</a></li>
+                  <li><a href="#">Economic</a></li>
+                </ul>
+              </li>
+              <li><a href="#cart">Cart</a></li>
+              <li><a href="#contact">About Us</a></li>
+            </ul>
+          </div>
+  
+          <div class="topNav-search">
+            <form @submit.prevent="emitSearchQuery">
+              <i class="topNav-icon-search fa-solid fa-magnifying-glass"></i>
+              <input 
+                type="text" 
+                class="topNav-searchbar" 
+                placeholder="Find your book" 
+                v-model="searchQuery" 
+                @input="emitSearchQuery" />
+            </form>
+          </div>
+  
+          <div class="user">
+            <div onclick="document.getElementById('js_signup').style.display='none'">
+              <a onclick="document.getElementById('js_login').style.display='flex'" class="js-login js-closesignup">
+                <router-link to="../index">Login</router-link>
+              </a>
             </div>
+  
+            <div onclick="document.getElementById('js_login').style.display='none'">
+              <a onclick="document.getElementById('js_signup').style.display='flex'" class="js-signup js-closelogin">
+                <router-link to="../index">Signup</router-link>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-
-</template>  
-
-<!-- <script setup>
-import { ref } from 'vue';
+  </template>
+  
+  <script setup>
+  import { ref } from 'vue';
+import { useEmitter } from '../emits'; // Sử dụng đường dẫn tương đối
 
 const searchQuery = ref('');
-const books = ref([]);
+const { emit } = useEmitter();
 
-const searchBooks = async () => {
-  try {
-    const response = await fetch(`http://localhost:3000/api/v1/book/search?name=${searchQuery.value}`);
-    const data = await response.json();
-    books.value = data.books;
-  } catch (error) {
-    console.error('Error searching for books:', error);
-  }
+const emitSearchQuery = () => {
+  emit('search-query-updated', searchQuery.value);
 };
-</script> -->
-
+  </script>
+  
 
 <style scoped>
 

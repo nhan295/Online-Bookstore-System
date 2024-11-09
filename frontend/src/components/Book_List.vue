@@ -3,7 +3,7 @@
     <h2>{{ category }}</h2>
     <div v-if="loading">Loading...</div>
     <div v-else-if="error">{{ error }}</div>
-    <div v-else >
+    <div v-else>
       <div class="list_container">
         <div v-for="(book, index) in books" :key="index" class="list-item">
           <img :src="book.book_image" alt="Book Cover" class="book-cover" />
@@ -13,23 +13,31 @@
         </div>
       </div>
     </div>
+
+    <div class="list_container">
+      <div v-for="(book, index) in listBooks" :key="index" class="list-item">
+        <img :src="book.book_image" alt="Book Cover" class="book-cover" />
+        <span>{{ book.book_title }}</span>
+        <span>{{ book.book_price }}</span>
+        <span>{{ book.book_discount }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
+import axios from 'axios';
+import { useEmitter } from '../emits';
 
-// Nhận `category` từ props
 const props = defineProps({
   category: String,
 });
 
-// Tạo các biến reactive cho dữ liệu và trạng thái
 const books = ref([]);
 const loading = ref(true);
 const error = ref(null);
 
-// Hàm gọi API để lấy sách theo thể loại
 const fetchBooks = async () => {
   loading.value = true;
   error.value = null;
@@ -40,7 +48,7 @@ const fetchBooks = async () => {
       throw new Error('Failed to load books');
     }
     const data = await response.json();
-    books.value = data.message; // Lấy dữ liệu từ response
+    books.value = data.message;
   } catch (err) {
     error.value = err.message;
   } finally {
@@ -48,12 +56,32 @@ const fetchBooks = async () => {
   }
 };
 
-// Gọi hàm khi component được mount
 onMounted(fetchBooks);
-
-// Theo dõi sự thay đổi của `category` để cập nhật dữ liệu
 watch(() => props.category, fetchBooks);
+
+const listBooks = ref([]);
+const { on } = useEmitter();
+
+const searchBooks = async (searchText) => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/v1/book/search/${searchText}`);
+    if (response.data.books) {
+      listBooks.value = response.data.books;
+    }
+  } catch (error) {
+    console.error('Error fetching books:', error);
+  }
+};
+
+on('search-query-updated', (searchQuery) => {
+  if (searchQuery) {
+    searchBooks(searchQuery);
+  } else {
+    listBooks.value = [];
+  }
+});
 </script>
+
 
 <style scoped>
 .body{
