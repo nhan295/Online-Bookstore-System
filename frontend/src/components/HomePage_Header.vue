@@ -7,9 +7,9 @@
               <li><a href="#">Home</a></li>
               <li><a href="#category">Category</a>
                 <ul class="sub_product">
-                  <li><a href="#">Romantic</a></li>
-                  <li><a href="#">Adventure</a></li>
-                  <li><a href="#">Economic</a></li>
+                  <li><a href="#romantic">Romantic</a></li>
+                  <li><a href="#adventure">Adventure</a></li>
+                  <li><a href="#economic">Economic</a></li>
                 </ul>
               </li>
               <li><a href="#cart">Cart</a></li>
@@ -17,8 +17,8 @@
             </ul>
           </div>
   
+        <form @submit.prevent="emitSearchQuery">
           <div class="topNav-search">
-            <form @submit.prevent="emitSearchQuery">
               <i class="topNav-icon-search fa-solid fa-magnifying-glass"></i>
               <input 
                 type="text" 
@@ -26,8 +26,8 @@
                 placeholder="Find your book" 
                 v-model="searchQuery" 
                 @input="emitSearchQuery" />
-            </form>
           </div>
+        </form>
   
           <div class="user">
             <div onclick="document.getElementById('js_signup').style.display='none'">
@@ -47,8 +47,8 @@
     </div>
   </template>
   
-  <script setup>
-  import { ref } from 'vue';
+<script setup>
+import { ref } from 'vue';
 import { useEmitter } from '../emits'; 
 
 const searchQuery = ref('');
@@ -57,9 +57,8 @@ const { emit } = useEmitter();
 const emitSearchQuery = () => {
   emit('search-query-updated', searchQuery.value);
 };
-  </script>
+</script>
   
-
 <style scoped>
 
 *{
@@ -223,7 +222,6 @@ html {
   border-radius: 2px;
   display: flex;
   align-items: center;
-  width: 30%;
 }
 
 .topNav-search input {
@@ -239,7 +237,6 @@ html {
 }
 
 .topNav-searchbar {
-  width: 100%;
   height: 100%;
   padding: 0 16px;
   outline: none;

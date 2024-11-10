@@ -3,46 +3,44 @@
         <div class="header">
             <div class="header-nav">
                 <div>
-
                     <ul class="nav">
                         <li><a href="#">Home</a></li>
                         <li><a href="#category">Category</a>
-                            
                                 <ul class="sub_product">
-                                    <li><a href="roman">Romantic</a></li>
-                                    <li><a href="adventure">Adventure</a></li>
-                                    <li><a href="economic">Economic</a></li>
+                                    <li><a href="#romantic">Romantic</a></li>
+                                    <li><a href="#adventure">Adventure</a></li>
+                                    <li><a href="#economic">Economic</a></li>
                                 </ul>
-                            
                         </li>
                         <li><a href="#cart">Cart</a></li>
-                        <li><a href="#contact">About Us</a></li>
-                        
+                        <li><a href="#contact">About Us</a></li>                      
                     </ul>
                 </div>
                 
-                <div class="topNav-search">
-                    <div>
-                        <form action="search">
+                <form @submit.prevent="emitSearchQuery">
+                    <div class="topNav-search">
                         <i class="topNav-icon-search fa-solid fa-magnifying-glass"></i>
-                        </form>
+                        <input 
+                            type="text" 
+                            class="topNav-searchbar" 
+                            placeholder="Find your book" 
+                            v-model="searchQuery" 
+                            @input="emitSearchQuery" />
                     </div>
+                </form>
 
-                    <div>
-                        <input type="text" class="topNav-searchbar" placeholder="Find your book" />
-                    </div>
+                <div>
+                    <li  class="user" style="cursor: pointer;">
+                        <a>
+                            <img :src="userAvatar" alt="" class="user-img" />
+                        </a>
+                            
+                        <ul class="subuser">
+                            <li><a class="js-userInfor js-closeChangePass">User Information</a></li>
+                            <li @click="logout()"><a href="#">Log Out</a></li>
+                        </ul>
+                    </li>
                 </div>
-
-                <li  class="user" style="cursor: pointer;">
-                    <a>
-                        <img :src="userAvatar" alt="" class="user-img" />
-                    </a>
-                        
-                    <ul class="subuser">
-                        <li><a class="js-userInfor js-closeChangePass">User Information</a></li>
-                        <li @click="logout()"><a href="#">Log Out</a></li>
-                    </ul>
-                </li>
                 
             </div>
         </div>
@@ -53,6 +51,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useEmitter } from '../emits'; 
 
 const userAvatar = ref("");
 const router = useRouter();
@@ -89,6 +88,13 @@ const logout = async () => {
 onMounted(() => {
   getUserData();
 });
+
+const searchQuery = ref('');
+const { emit } = useEmitter();
+
+const emitSearchQuery = () => {
+  emit('search-query-updated', searchQuery.value);
+};
 </script>
 
 <style scoped>
@@ -285,8 +291,6 @@ html {
   border-radius: 2px;
   display: flex;
   align-items: center;
-  width: 30%;
-  margin: auto;
 }
 
 .topNav-search input {
@@ -302,7 +306,6 @@ html {
 }
 
 .topNav-searchbar {
-  width: 100%;
   height: 100%;
   padding: 0 16px;
   outline: none;
