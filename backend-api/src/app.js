@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const userRoute = require('./routes/userRoute');
 const bookRoute = require('./routes/bookRoute');
+const cartRoute = require('./routes/cartRoute');
+
 const app = express();
 
 const session = require('express-session');
@@ -32,5 +34,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 userRoute.setup(app)
 bookRoute.setup(app)
+cartRoute.setup(app)
 
 module.exports = app
