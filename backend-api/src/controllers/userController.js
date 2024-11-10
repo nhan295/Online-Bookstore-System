@@ -16,7 +16,7 @@ const getAllUsers = async (req, res) => {
 const signup = async (req, res) => {
 
     try {
-        const { username, password, confirmPassword, email, date } = req.body;
+        const { username, address, password, confirmPassword, email, date } = req.body;
 
         if (!username || !email || !password || !confirmPassword) {
             return res.status(400).json({ message: 'Missing required fields' });
@@ -39,7 +39,7 @@ const signup = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        await userModel.signup(username, hashedPassword, email, date);
+        await userModel.signup(username, address, hashedPassword, email, date);
         
         req.session.user = await userModel.getUserData(username)
         req.session.user_name = username

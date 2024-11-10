@@ -16,6 +16,10 @@ const userModel = {
         return db('USERS').where({ user_email: email }).first();
     },
 
+    getAddress: (address) => {
+        return db('USERS').where({ user_address: address }).first();
+    },
+
     getPassword: (username) => {
         return db('USERS')
             .select('user_password')
@@ -24,9 +28,10 @@ const userModel = {
             .then(result => result.user_password);
     },
     
-    signup: (username, password, email, date) => {
+    signup: (username, address, password, email, date) => {
         return db('USERS').insert({
             user_name: username,
+            user_address: address,
             user_password: password,
             user_email: email,
             date_created: date

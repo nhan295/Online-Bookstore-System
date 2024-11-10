@@ -2,31 +2,27 @@
      
    <HomePage_Header />
 
-     <div class="title" style="padding-top: 60px;">
+   <SearchResult />
+
+     <div id="romantic">
        
       <Book_List category="Romantic " />
      </div>
 
-     <div class="title" style="padding-top: 30px;">
+     <div id="adventure" style="padding-top: 30px;">
         
       <Book_List category="Adventure" />
      </div>
 
-     <div class="title" style="padding-top: 30px;">
+     <div id="economic" style="padding-top: 30px;">
         
       <Book_List category="Economic" />
      </div>
     
 </template>
 
-<script>
+<script setup>
 import HomePage_Header from '@/components/HomePage_Header.vue';
 import Book_List from '@/components/Book_List.vue';
-    export default {
-        components: {
-            HomePage_Header,
-            Book_List
-        }
-
-    };
+import SearchResult from '@/components/SearchResult.vue';
 </script>
