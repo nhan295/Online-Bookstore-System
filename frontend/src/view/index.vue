@@ -42,6 +42,11 @@
           </div>
 
           <div class="input-field">
+            <i class="fas fa-map-marker-alt"></i>
+            <input type="address" placeholder="Address" name="address"/>
+          </div>
+
+          <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" placeholder="Password" name="password"/>
           </div>

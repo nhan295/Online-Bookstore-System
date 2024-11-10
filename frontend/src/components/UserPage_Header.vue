@@ -36,7 +36,9 @@
                         </a>
                             
                         <ul class="subuser">
-                            <li><a class="js-userInfor js-closeChangePass">User Information</a></li>
+                            <li><a class="js-userInfor js-closeChangePass">
+                                <router-link to="../UserInfo">User Information</router-link>
+                            </a></li>
                             <li @click="logout()"><a href="#">Log Out</a></li>
                         </ul>
                     </li>
