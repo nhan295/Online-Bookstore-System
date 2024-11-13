@@ -41,7 +41,29 @@ const userModel = {
     signin: (username, password) => {
         return db('USERS')
        .where({ user_name: username })
+    },
+
+    changePass: (userId, password) => {
+        return db('USERS')
+            .update({
+            user_password: password
+            })
+            .where({ user_id: userId })
+    },
+    passwordByUserId: (userId) => {
+        return db('USERS')
+            .select('user_password')
+            .where({ user_id: userId })
+            .first()
+            .then(result => result.user_password);
+    },
+
+    changePassword: (userId, newPassword) => {
+        return db('USERS')
+            .update({ user_password: newPassword })
+            .where({ user_id: userId })
     }
+
 }
 
 module.exports = userModel;
