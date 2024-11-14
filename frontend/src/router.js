@@ -8,7 +8,7 @@ import UserInfo from './view/UserInfo.vue';
 
 
 const routes = [
-                { path: '/index', component: index},
+                { path: '/', component: index},
                 { path: '/HomePage', component: HomePage},
                 { path: '/UserPage', component: UserPage},
                 { path: '/UserInfo', component: UserInfo}

@@ -16,6 +16,8 @@
             <input type="password" placeholder="Password" name="password"/>
           </div>
 
+          <span class="message-sign-in"></span>
+
           <button class="btn">Login</button>
 
           <p class="social-text">Or Sign in with social platforms</p>
@@ -60,6 +62,8 @@
             <input id="date" type="hidden" placeholder="" name="date" />
             <label></label>
           </div>
+
+          <span class="message-sign-up"></span>
 
             <button class="btn">Sign Up</button>
           <!-- <input type="submit" class="btn" value="Sign up" /> -->

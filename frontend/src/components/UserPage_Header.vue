@@ -144,6 +144,7 @@ html {
     display: block;
     color: #fff;
     font-size: 30px;
+    padding: 12px 32px;
 }
 
 .sub_product li a {
@@ -182,6 +183,7 @@ html {
     color: #fff;
     cursor: pointer;
     font-size: 30px;
+    padding: 12px 20px;
 }
 
 .user a:hover {
@@ -189,11 +191,6 @@ html {
     background-color: #ccc;
 }
 
-.user img{
-    float: inline-start;
-    margin-top: 13px;
-    margin-right: 8px;
-}
 .user-img {
     width: 40px;
     height: 40px;
@@ -274,6 +271,7 @@ html {
     position: absolute;
     margin-right: 20px;
     right: 0;
+    top: 72px;
 }
 
 .user:hover .subuser{

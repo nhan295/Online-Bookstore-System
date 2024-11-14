@@ -32,13 +32,13 @@
           <div class="user">
             <div onclick="document.getElementById('js_signup').style.display='none'">
               <a onclick="document.getElementById('js_login').style.display='flex'" class="js-login js-closesignup">
-                <router-link to="../index">Login</router-link>
+                <router-link to="../">Login</router-link>
               </a>
             </div>
   
             <div onclick="document.getElementById('js_login').style.display='none'">
               <a onclick="document.getElementById('js_signup').style.display='flex'" class="js-signup js-closelogin">
-                <router-link to="../index">Signup</router-link>
+                <router-link to="../">Signup</router-link>
               </a>
             </div>
           </div>
