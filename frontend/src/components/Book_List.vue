@@ -8,7 +8,7 @@
         <div v-for="(book, index) in books" :key="index" class="list-item">
             <img :src="book.book_image" alt="Book Cover" class="book-cover" />
             <span>{{ book.book_title }}</span>
-            <span>{{ book.book_price }}</span>
+            <span class="bprice">{{ book.book_price }}</span>
             <span>{{ book.book_discount }}</span>
             <button>Thêm giỏ hàng</button>
         </div>
@@ -114,4 +114,7 @@ span {
   margin-top: 5px;
 }
 
+.list_container .bprice{
+  text-decoration: line-through;
+}
 </style>
