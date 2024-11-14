@@ -6,10 +6,11 @@
     <div v-else>
       <div class="list_container">
         <div v-for="(book, index) in books" :key="index" class="list-item">
-          <img :src="book.book_image" alt="Book Cover" class="book-cover" />
-          <span>{{ book.book_title }}</span>
-          <span>{{ book.book_price }}</span>
-          <span>{{ book.book_discount }}</span>
+            <img :src="book.book_image" alt="Book Cover" class="book-cover" />
+            <span>{{ book.book_title }}</span>
+            <span>{{ book.book_price }}</span>
+            <span>{{ book.book_discount }}</span>
+            <button>Thêm giỏ hàng</button>
         </div>
       </div>
     </div>
@@ -27,6 +28,10 @@ const books = ref([]);
 const loading = ref(true);
 const error = ref(null);
 
+const formatNumber = (number) => {
+  return new Intl.NumberFormat('vi-VN').format(number).concat(' đ')
+}
+
 const fetchBooks = async () => {
   loading.value = true;
   error.value = null;
@@ -37,7 +42,21 @@ const fetchBooks = async () => {
       throw new Error('Failed to load books');
     }
     const data = await response.json();
-    books.value = data.message;
+    const bookData = data.message
+
+    const newBookData = bookData.map((book) => {
+      const priceFormat = formatNumber(book.book_price)
+      const discountFormat = formatNumber(book.book_discount)
+
+      return {
+        book_discount: discountFormat,
+        book_image: book.book_image,
+        book_price: priceFormat,
+        book_title: book.book_title
+      }
+    })
+    console.log(bookData);
+    books.value = newBookData;
   } catch (err) {
     error.value = err.message;
   } finally {
@@ -52,12 +71,24 @@ watch(() => props.category, fetchBooks);
 
 <style scoped>
 .body{
-  
+  display: grid;
+  justify-content: center;
 }
 .list_container {
   display: flex;
-  gap: 12px; /* Allows wrapping if there are too many items to fit in one line */
+  gap: 30px; /* Allows wrapping if there are too many items to fit in one line */
   justify-content: center; /* Adds space between each item */
+  font-size: 18px;
+}
+
+.list_container img {
+  margin-top: 20px;
+}
+
+.list_container button  {
+  padding: 5px;
+  font-size: 15px;
+  margin: 10px 0px 20px 0px;
 }
 
 .list-item {

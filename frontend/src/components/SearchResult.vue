@@ -5,6 +5,7 @@
         <span>{{ book.book_title }}</span>
         <span>{{ book.book_price }}</span>
         <span>{{ book.book_discount }}</span>
+        <button>Thêm giỏ hàng</button>
       </div>
     </div>
 </template> 
@@ -17,11 +18,30 @@ import { useEmitter } from '../emits';
 const listBooks = ref([]);
 const { on } = useEmitter();
 
+const formatNumber = (number) => {
+  return new Intl.NumberFormat('vi-VN').format(number).concat(' đ')
+}
+
 const searchBooks = async (searchText) => {
   try {
     const response = await axios.get(`http://localhost:3000/api/v1/book/search/${searchText}`);
     if (response.data.books) {
-      listBooks.value = response.data.books;
+      const list = response.data.books;
+
+
+    const newBookData = list.map((book) => {
+      const priceFormat = formatNumber(book.book_price)
+      const discountFormat = formatNumber(book.book_discount)
+
+      return {
+        book_discount: discountFormat,
+        book_image: book.book_image,
+        book_price: priceFormat,
+        book_title: book.book_title
+      }
+    })
+    console.log(newBookData);
+    listBooks.value = newBookData;
     }
   } catch (error) {
     console.error('Error fetching books:', error);
@@ -55,6 +75,12 @@ on('search-query-updated', (searchQuery) => {
   border: 1px solid #ddd; /* Optional: adds a border around each item */
   border-radius: 8px; /* Optional: rounded corners */
   background-color: #f9f9f9; /* Optional: background color */
+}
+
+.list_container button {
+    padding: 5px;
+    font-size: 15px;
+    margin: 10px 0px 20px 0px;
 }
 
 .book-cover {
