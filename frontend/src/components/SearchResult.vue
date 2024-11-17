@@ -5,7 +5,7 @@
         <span>{{ book.book_title }}</span>
         <span class="bprice">{{ book.book_price }}</span>
         <span>{{ book.book_discount }}</span>
-        <button>Thêm giỏ hàng</button>
+        <CartButton :book="book"/>
       </div>
     </div>
 </template> 
@@ -14,6 +14,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import { useEmitter } from '../emits';
+import CartButton from '../components/CartButton.vue';
 
 const listBooks = ref([]);
 const { on } = useEmitter();

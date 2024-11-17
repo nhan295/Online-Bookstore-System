@@ -4,16 +4,25 @@
             <div class="header-nav">
                 <div>
                     <ul class="nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#category">Category</a>
+                        <li>
+                            <a>
+                             <router-link to="../UserPage">Home</router-link>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                             <router-link to="../UserPage">Category</router-link>
+                            </a>
                                 <ul class="sub_product">
                                     <li><a href="#romantic">Romantic</a></li>
                                     <li><a href="#adventure">Adventure</a></li>
                                     <li><a href="#economic">Economic</a></li>
                                 </ul>
                         </li>
-                        <li><a href="#cart">Cart</a></li>
-                        <li><a href="#contact">About Us</a></li>                      
+                        <li><a>
+                             <router-link to="../CartPage">Cart</router-link>
+                        </a></li>
+                        <!-- <li><a href="#contact">About Us</a></li>                       -->
                     </ul>
                 </div>
                 

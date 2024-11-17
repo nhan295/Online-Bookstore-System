@@ -4,8 +4,15 @@
         <div class="header-nav">
           <div>
             <ul class="nav">
-              <li><a href="#">Home</a></li>
-              <li><a href="#category">Category</a>
+              <li>
+                <a>
+                  <router-link to="../HomePage">Home</router-link>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <router-link to="../HomePage">Category</router-link>
+                </a>
                 <ul class="sub_product">
                   <li><a href="#romantic">Romantic</a></li>
                   <li><a href="#adventure">Adventure</a></li>
@@ -13,7 +20,6 @@
                 </ul>
               </li>
               <li><a href="#cart">Cart</a></li>
-              <li><a href="#contact">About Us</a></li>
             </ul>
           </div>
   
@@ -33,12 +39,6 @@
             <div onclick="document.getElementById('js_signup').style.display='none'">
               <a onclick="document.getElementById('js_login').style.display='flex'" class="js-login js-closesignup">
                 <router-link to="../">Login</router-link>
-              </a>
-            </div>
-  
-            <div onclick="document.getElementById('js_login').style.display='none'">
-              <a onclick="document.getElementById('js_signup').style.display='flex'" class="js-signup js-closelogin">
-                <router-link to="../">Signup</router-link>
               </a>
             </div>
           </div>
