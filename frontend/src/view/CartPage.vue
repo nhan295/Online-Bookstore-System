@@ -3,7 +3,7 @@
   <div class="container mt-5 main-content">
     <h2 class="text-center mb-4">Your Shopping Cart</h2>
     <div v-if="cartItems.length === 0" class="text-center">
-        <img src="D:\ct313h01-project-nhan295\frontend\src\assets\image\empty-cart.png" alt="Empty Cart" class="img-fluid mb-3" style="max-width: 150px;">
+        <img src="D:\BookStore_project\frontend\src\assets\image\empty-cart.png" alt="Empty Cart" class="img-fluid mb-3" style="max-width: 150px;">
         <p>Your cart is empty!</p>
     </div>
     <div v-else class="table-responsive">
