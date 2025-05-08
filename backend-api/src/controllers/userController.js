@@ -1,16 +1,16 @@
 const userModel = require('../models/userModel');
 const bcrypt = require('bcrypt');
 
-const getAllUsers = async (req, res) => {
-    try {
-        const users = await userModel.getAllUsers();
-        res.json(users);
-    }
-    catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error retrieving users' });
-    }
-}
+// const getAllUsers = async (req, res) => {
+//     try {
+//         const users = await userModel.getAllUsers();
+//         res.json(users);
+//     }
+//     catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Error retrieving users' });
+//     }
+// }
 
 // Sign up
 const signup = async (req, res) => {
@@ -129,7 +129,7 @@ const changePassword = async (req, res) => {
 
 
 module.exports = {
-    getAllUsers,
+    // getAllUsers,
     signup,
     signin,
     userData,
